@@ -3,11 +3,12 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrash,faPencilAlt} from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import {deleteFade} from '../Animation'
 function Todo({todoTexts,toggleCompleteTodo,deleteTodoHandler}) {
 
     return(
         <MainDiv>
-         <StyledTodo className="todo">
+         <StyledTodo className="todo" variants={deleteFade} initial="hidden" animate="show" exit="exit">
             <h2 style={{textDecoration:todoTexts.complete ? "line-through" :""}} onClick={toggleCompleteTodo} key={todoTexts.id}>{todoTexts.text}</h2>
             <div className="icons">
              <FontAwesomeIcon 

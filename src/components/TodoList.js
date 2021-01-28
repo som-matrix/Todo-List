@@ -3,6 +3,7 @@ import TodoForm from '../components/TodoForm';
 import Todo from '../components/Todo';
 import {motion} from 'framer-motion';
 import styled from 'styled-components';
+import {textFade,buttonFade,childButton} from '../Animation'
 function TodoList() {
     const [todos,setTodos] = useState([]);
     const [showTodos,setShowTodos] = useState('All');
@@ -51,7 +52,7 @@ function TodoList() {
             <StyledActive>
              <h2>Active Todos <span>{todos.filter(todo=>!todo.complete).length}</span></h2>
            </StyledActive>
-           <h1>What's your plan up for today</h1>
+           <motion.h1 variants={textFade} initial="hidden" animate="show">What's your plan up for today</motion.h1>
            <TodoForm onSubmit={addTodo}/>
            <div>
              {newTodosList.map(todo=>(
@@ -64,10 +65,10 @@ function TodoList() {
                 />
               ))}
            </div>
-           <StyledButtonsDiv>
-             <button onClick={()=>todoShowHandler('All')}>All Todos</button>
-             <button onClick={()=>todoShowHandler('Active')}>Active todos</button>
-             <button onClick={()=>todoShowHandler('Completed')}>Completed Todos</button>
+           <StyledButtonsDiv variants={buttonFade} initial="hidden" animate="show">
+             <motion.button variants={childButton} onClick={()=>todoShowHandler('All')}>All Todos</motion.button>
+             <motion.button variants={childButton} onClick={()=>todoShowHandler('Active')}>Active todos</motion.button>
+             <motion.button variants={childButton} onClick={()=>todoShowHandler('Completed')}>Completed Todos</motion.button>
            </StyledButtonsDiv>
         </StyledList>
     )
